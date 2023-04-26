@@ -1,3 +1,5 @@
+import { Image } from "@/components";
+
 export default function Home() {
   return (
     <>
@@ -11,6 +13,8 @@ export default function Home() {
       </header>
 
       <main className="col-start-2 row-start-3">
+        <Image publicId="placeholder_tpimwl" />
+        <Image publicId="placeholder2_dinmx7" />
       </main>
     </>
   );
