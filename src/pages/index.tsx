@@ -15,6 +15,7 @@ export default function Home() {
       <main className="col-start-2 row-start-3">
         <Image publicId="placeholder_tpimwl" />
         <Image publicId="placeholder2_dinmx7" />
+        <Image publicId="placeholder3_wyzlj5" />
       </main>
     </>
   );
