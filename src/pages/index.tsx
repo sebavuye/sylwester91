@@ -13,7 +13,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSer
 
       <main className='col-start-2 row-start-3'>
         {data.resources.map(image => {
-          return <Image key={image.asset_id} publicId={image.public_id} />;
+          return <Image key={image.asset_id} alt={image.context?.custom?.alt ?? ''} publicId={image.public_id} />;
         })}
       </main>
     </>

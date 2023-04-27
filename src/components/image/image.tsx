@@ -4,10 +4,11 @@ import { dpr, quality } from '@cloudinary/url-gen/actions/delivery';
 import { cloudinary } from '@/plugins';
 
 interface ImageProps {
+  alt: string;
   publicId: string;
 }
 
-export const Image = ({ publicId }: ImageProps) => {
+export const Image = ({ alt, publicId }: ImageProps) => {
   const cloudinaryImage = cloudinary
     .image(publicId)
     .format(IMAGE_DEFAULT_OPTIONS.format)
@@ -17,6 +18,7 @@ export const Image = ({ publicId }: ImageProps) => {
   return (
     <div style={{ width: '100%' }}>
       <AdvancedImage
+        alt={alt}
         style={{ maxWidth: '100%', width: '100%' }}
         cldImg={cloudinaryImage}
         plugins={[responsive({ steps: IMAGE_DEFAULT_OPTIONS.responsiveSteps }), placeholder({ mode: IMAGE_DEFAULT_OPTIONS.placeholderMode }), lazyload()]}
