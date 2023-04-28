@@ -27,7 +27,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
       </main>
 
       <footer className='col-start-2 row-start-4 flex justify-center items-center'>
-        <p className='font-serif text-xs'>&copy; Sebastian Vuye 2023</p>
+        <p className='font-serif text-xs'>&copy; Sebastian Vuye {new Date().getFullYear()}</p>
       </footer>
     </>
   );
