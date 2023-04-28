@@ -1,4 +1,4 @@
-import { Image } from '@/components';
+import { MemoizedImage } from '@/components';
 import type { SortedResourcesData } from '@/types';
 
 import type { InferGetServerSidePropsType } from 'next';
@@ -37,12 +37,12 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
             return (
               <div key={image[0].asset_id} className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10'>
                 {image.map(subImage => (
-                  <Image key={subImage.asset_id} alt={subImage.context?.custom?.alt ?? ''} publicId={subImage.public_id} />
+                  <MemoizedImage key={subImage.asset_id} alt={subImage.context?.custom?.alt ?? ''} publicId={subImage.public_id} />
                 ))}
               </div>
             );
           }
-          return <Image key={image.asset_id} alt={image.context?.custom?.alt ?? ''} publicId={image.public_id} />;
+          return <MemoizedImage key={image.asset_id} alt={image.context?.custom?.alt ?? ''} publicId={image.public_id} />;
         })}
         {isScrollToTopVisible ? (
           <button

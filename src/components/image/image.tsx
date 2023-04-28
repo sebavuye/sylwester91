@@ -2,13 +2,14 @@ import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/re
 import { IMAGE_DEFAULT_OPTIONS } from './constants';
 import { dpr, quality } from '@cloudinary/url-gen/actions/delivery';
 import { cloudinary } from '@/plugins';
+import { memo } from 'react';
 
 interface ImageProps {
   alt: string;
   publicId: string;
 }
 
-export const Image = ({ alt, publicId }: ImageProps) => {
+const Image = ({ alt, publicId }: ImageProps) => {
   const cloudinaryImage = cloudinary
     .image(publicId)
     .format(IMAGE_DEFAULT_OPTIONS.format)
@@ -26,3 +27,5 @@ export const Image = ({ alt, publicId }: ImageProps) => {
     </div>
   );
 };
+
+export const MemoizedImage = memo(Image);
