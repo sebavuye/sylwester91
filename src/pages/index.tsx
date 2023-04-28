@@ -25,6 +25,10 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
           return <Image key={image.asset_id} alt={image.context?.custom?.alt ?? ''} publicId={image.public_id} />;
         })}
       </main>
+
+      <footer className='col-start-2 row-start-4 flex justify-center items-center'>
+        <p className='font-serif text-xs'>&copy; Sebastian Vuye 2023</p>
+      </footer>
     </>
   );
 }

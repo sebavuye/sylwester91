@@ -14,7 +14,7 @@ const cinzel = Cinzel({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${josefinSans.variable} ${cinzel.variable} grid gap-y-12 grid-cols-[20%_60%_20%]`}>
+    <div className={`${josefinSans.variable} ${cinzel.variable} grid gap-y-12 grid-cols-[20%_60%_20%] pb-10`}>
       <Component {...pageProps} />
     </div>
   );
