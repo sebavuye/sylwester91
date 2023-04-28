@@ -3,7 +3,7 @@ import type { SortedResourcesData } from '@/types';
 
 import type { InferGetServerSidePropsType } from 'next';
 
-export default function Home({ data }: InferGetServerSidePropsType<typeof getStaticProps>) {
+export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <header className='col-start-2 row-start-2 flex flex-col items-center justify-center'>
@@ -29,7 +29,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch(`${process.env.BASE_API_URL}/.netlify/functions/cloudinary`);
   const data: SortedResourcesData = await response.json();
 
