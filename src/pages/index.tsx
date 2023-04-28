@@ -30,7 +30,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
 }
 
 export async function getStaticProps() {
-  const response = await fetch(`http://localhost:8888/.netlify/functions/cloudinary`);
+  const response = await fetch(`${process.env.BASE_API_URL}/.netlify/functions/cloudinary`);
   const data: SortedResourcesData = await response.json();
 
   if (!data) {
