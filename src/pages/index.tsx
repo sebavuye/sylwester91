@@ -1,5 +1,5 @@
 import { Image } from '@/components';
-import type { CloudinaryResourcesByTagResponseDTO } from '@/types';
+import type { SortedResourcesData } from '@/types';
 
 import type { InferGetServerSidePropsType } from 'next';
 
@@ -15,7 +15,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
         {data.resources.map(image => {
           if (Array.isArray(image)) {
             return (
-              <div className='flex'>
+              <div key={image[0].asset_id} className='flex'>
                 {image.map(subImage => (
                   <Image key={subImage.asset_id} alt={subImage.context?.custom?.alt ?? ''} publicId={subImage.public_id} />
                 ))}
@@ -31,7 +31,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
 
 export async function getStaticProps() {
   const response = await fetch(`http://localhost:8888/.netlify/functions/cloudinary`);
-  const data = await response.json();
+  const data: SortedResourcesData = await response.json();
 
   if (!data) {
     return {
