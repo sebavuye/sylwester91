@@ -6,10 +6,12 @@ import { memo } from 'react';
 
 interface ImageProps {
   alt: string;
+  height: number;
   publicId: string;
+  width: number;
 }
 
-const Image = ({ alt, publicId }: ImageProps) => {
+const Image = ({ alt, height, publicId, width }: ImageProps) => {
   const cloudinaryImage = cloudinary
     .image(publicId)
     .format(IMAGE_DEFAULT_OPTIONS.format)
@@ -20,9 +22,11 @@ const Image = ({ alt, publicId }: ImageProps) => {
     <div style={{ width: '100%' }}>
       <AdvancedImage
         alt={alt}
+        height={height}
         style={{ maxWidth: '100%', width: '100%' }}
         cldImg={cloudinaryImage}
         plugins={[responsive({ steps: IMAGE_DEFAULT_OPTIONS.responsiveSteps }), placeholder({ mode: IMAGE_DEFAULT_OPTIONS.placeholderMode }), lazyload()]}
+        width={width}
       />
     </div>
   );

@@ -41,12 +41,20 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
             return (
               <div key={image[0].asset_id} className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10'>
                 {image.map(subImage => (
-                  <MemoizedImage key={subImage.asset_id} alt={subImage.context?.custom?.alt ?? ''} publicId={subImage.public_id} />
+                  <MemoizedImage
+                    key={subImage.asset_id}
+                    height={subImage.height}
+                    alt={subImage.context?.custom?.alt ?? ''}
+                    publicId={subImage.public_id}
+                    width={subImage.width}
+                  />
                 ))}
               </div>
             );
           }
-          return <MemoizedImage key={image.asset_id} alt={image.context?.custom?.alt ?? ''} publicId={image.public_id} />;
+          return (
+            <MemoizedImage key={image.asset_id} alt={image.context?.custom?.alt ?? ''} height={image.height} publicId={image.public_id} width={image.width} />
+          );
         })}
         {isScrollToTopVisible ? (
           <button
