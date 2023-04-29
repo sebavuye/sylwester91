@@ -51,7 +51,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
         {isScrollToTopVisible ? (
           <button
             type='button'
-            className='fixed -rotate-90 right-12 bottom-6 text-white border bg-zinc-700 border-zinc-700 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center'
+            className='fixed -rotate-90 right-12 bottom-12 md:bottom-6 text-white border bg-zinc-700 border-zinc-700 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-full text-sm p-5 text-center inline-flex items-center'
             onClick={handleScrollToTopClick}>
             <svg aria-hidden='true' className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <path
