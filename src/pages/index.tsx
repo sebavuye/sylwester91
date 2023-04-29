@@ -3,6 +3,7 @@ import type { SortedResourcesData } from '@/types';
 
 import type { InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 export default function Home({ data }: InferGetServerSidePropsType<typeof getStaticProps>) {
   const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
@@ -30,6 +31,13 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
 
   return (
     <>
+      <Head>
+        <title>Sylwester91 - Home</title>
+        <meta content='Sylwester91 is the photography portfolio website of Sebastian Vuye.' name='description' />
+        <meta content='Sylwester91 | Photograpohy portfolio of Sebastian Vuye' name='title' />
+        <link href='/favicon.ico' rel='icon' />
+      </Head>
+
       <header className='col-start-2 row-start-2 flex flex-col items-center justify-center'>
         <h1 className='font-sans text-4xl sm:text-6xl uppercase leading-none font-normal 3xl:text-7xl 4xl:text-8xl'>Sylwester91</h1>
         <p className='font-serif text-sm leading-none 3xl:text-lg 4xl:text-xl'>Shots by Sebastian Vuye</p>
