@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react';
 export default function Home({ data }: InferGetServerSidePropsType<typeof getStaticProps>) {
   const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
 
+  const handleScrollToTopClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const toggleVisibilityByScrollHeight = () => {
       const showHeight = 1000;
@@ -47,10 +51,8 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
         {isScrollToTopVisible ? (
           <button
             type='button'
-            className='fixed -rotate-90 right-12 bottom-6 text-white border bg-zinc-700 border-zinc-700 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center'
-            onClick={() => {
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-            }}>
+            className='fixed -rotate-90 right-12 bottom-6 text-white border bg-zinc-700 border-zinc-700 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center'
+            onClick={handleScrollToTopClick}>
             <svg aria-hidden='true' className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
               <path
                 fillRule='evenodd'
