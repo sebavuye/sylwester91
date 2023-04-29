@@ -65,8 +65,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
                 clipRule='evenodd'
               />
             </svg>
-            {/* TODO */}
-            <span className='sr-only'>Icon description</span>
+            <span className='sr-only'>Back to top button</span>
           </button>
         ) : null}
       </main>
