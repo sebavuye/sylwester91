@@ -50,11 +50,11 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
       </header>
 
       <main className='col-start-2 row-start-3 grid gap-5 lg:gap-10'>
-        {data.resources.map(image => {
+        {data.resources?.map((image) => {
           if (Array.isArray(image)) {
             return (
               <div key={image[0].asset_id} className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10'>
-                {image.map(subImage => (
+                {image.map((subImage) => (
                   <MemoizedImage
                     key={subImage.asset_id}
                     height={subImage.height}
@@ -74,13 +74,15 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
           <button
             type='button'
             className='fixed -rotate-90 right-12 bottom-12 md:bottom-6 text-white border bg-zinc-700 border-zinc-700 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-full text-sm p-5 4xl:p-10 text-center inline-flex items-center'
-            onClick={handleScrollToTopClick}>
+            onClick={handleScrollToTopClick}
+          >
             <svg
               aria-hidden='true'
               className='w-5 h-5 3xl:w-7 3xl:h-7 4xl:w-10 4xl:h-10'
               fill='currentColor'
               viewBox='0 0 20 20'
-              xmlns='http://www.w3.org/2000/svg'>
+              xmlns='http://www.w3.org/2000/svg'
+            >
               <path
                 fillRule='evenodd'
                 d='M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z'
@@ -100,17 +102,16 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
 }
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.BASE_API_URL}/.netlify/functions/cloudinary`);
+  const response = await fetch(`/api/cloudinary`);
   const data: SortedResourcesData = await response.json();
 
   if (!data) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
-
   return {
     props: { data },
-    revalidate: 60
+    revalidate: 60,
   };
 }
