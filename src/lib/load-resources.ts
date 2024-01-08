@@ -1,5 +1,4 @@
 import type { CloudinaryResourcesByTagResponseDTO, CloudinaryResourcesByTagResponseWithOrderDTO, SortedResourcesData } from '@/types';
-import type { NextApiRequest, NextApiResponse } from 'next';
 
 const cloudinary = require('cloudinary').v2;
 
@@ -13,7 +12,7 @@ cloudinary.config({
 const requestTag = 'sylwester91';
 const resourceChunkSize = 2;
 
-export default async function handler(request: NextApiRequest, res: NextApiResponse) {
+export async function loadResources() {
   const response = await cloudinary.api.resources_by_tag(requestTag, { context: true, tags: true });
 
   const clonedResponse: CloudinaryResourcesByTagResponseDTO = { ...response };
@@ -56,5 +55,5 @@ export default async function handler(request: NextApiRequest, res: NextApiRespo
   const heroResource = sortedResourcesData.resources.splice(heroResourceIndex, 1)[0];
   sortedResourcesData.resources.splice(0, 0, heroResource);
 
-  return res.status(200).json({ ...sortedResourcesData });
+  return sortedResourcesData.resources;
 }

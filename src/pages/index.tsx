@@ -4,6 +4,7 @@ import type { SortedResourcesData } from '@/types';
 import type { InferGetServerSidePropsType } from 'next';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { loadResources } from '@/lib/load-resources';
 
 export default function Home({ data }: InferGetServerSidePropsType<typeof getStaticProps>) {
   const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
@@ -50,7 +51,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
       </header>
 
       <main className='col-start-2 row-start-3 grid gap-5 lg:gap-10'>
-        {data.resources?.map((image) => {
+        {data?.map((image) => {
           if (Array.isArray(image)) {
             return (
               <div key={image[0].asset_id} className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10'>
@@ -102,8 +103,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSta
 }
 
 export async function getStaticProps() {
-  const response = await fetch(`/api/cloudinary`);
-  const data: SortedResourcesData = await response.json();
+  const data = await loadResources();
 
   if (!data) {
     return {
